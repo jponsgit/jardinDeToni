@@ -354,7 +354,19 @@ span {
 
 
     }
+}
+
+@media (max-width: 520px){
+    #presupuesto {
+        width: 100px;
+    }
+
+    #Pcorreo {
+        display: none;
+    }
+    
 
 }
+
 
 

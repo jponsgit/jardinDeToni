@@ -175,6 +175,7 @@ header ul li a:hover{
 #zonaTrabajo h1 {
     display: flex;
     justify-content: center;
+    padding: 10px 0;
 }
 
 
@@ -195,7 +196,7 @@ header ul li a:hover{
     padding: 20px;
     border: 1px solid #8f8f8f;
     border-radius: 10px;
-    width: 50%;
+    width: 80%;
     font-weight: bold;
 }
 
@@ -206,7 +207,7 @@ header ul li a:hover{
 
 
 #zonaTrabajo ul li:hover {
-    width: 53%;
+    width: 83%;
 }
 
 #infoZona {

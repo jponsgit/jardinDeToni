@@ -128,7 +128,7 @@ footer h4 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0px 150px;
+    padding: 0px 50px;
     padding-top: 30px;
 }
 
@@ -166,3 +166,16 @@ footer h4 {
     padding-bottom: 10px;
 }
 
+@media (max-width: 587px){
+
+    #Pcorreo {
+        display: none;
+    }
+    
+    #contFoo{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+}

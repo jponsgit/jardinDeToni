@@ -8,6 +8,7 @@
     <link rel="icon" href="../img/logo.png" type="image/png">
 </head>
 <body>
+<a id="imgWhats" href=""><img src="../img/whatsapp-logo.webp"></a>
 <header>
     <nav>
         <a href="../index.html#inicio"><img src="../img/logo.png"></a>
@@ -23,11 +24,11 @@
 <div id="formularioDiv">
     <h1>Formulario de contacto</h1>
 
-    <form>
-        <input type="text" placeholder="Nombre">
-        <input type="email" placeholder="Email">
-        <textarea placeholder="Servicio/s"></textarea>
-        <button>Enviar</button>
+    <form id="miFormulario">
+        <input id="nombre" type="text" placeholder="Nombre">
+        <input id="email" type="email" placeholder="Email">
+        <textarea id="servicios" placeholder="Servicio/s"></textarea>
+        <button id="btnEnviar">Enviar</button>
     </form>
 </div>
 <footer>
@@ -45,13 +46,44 @@
                 <div id="imganes">
                     <a href="../index.html#inicio"><img id="logo" src="../img/logo.png"></a>
                     <div id="redes">
-                        <img src="../img/instagram-removebg-preview.png">
+                        <a href="https://www.instagram.com/eljardindetoni/"><img src="./img/instagram-removebg-preview.png"></a>
                         <img src="../img/facebook-removebg-preview.png">
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    
+            const btnEnviar = document.getElementById('btnEnviar');
+            const formulario = document.getElementById('miFormulario');
 
+            btnEnviar.addEventListener('click', () => {
+                
+                const nombre = document.getElementById('nombre').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const servicios = document.getElementById('servicios').value.trim();
+
+                if (nombre === '') {
+                    alert('El campo Nombre no puede estar vacío.');
+                    return; 
+                }
+
+                const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!regexEmail.test(email)) {
+                    alert('Por favor, introduce un email con sintaxis correcta.');
+                    return;
+                }
+
+                if (servicios === '') {
+                    alert('El campo Servicio/s no puede estar vacío.');
+                    return;
+                }
+                
+                alert('Datos enviados y guardados correctamente.');
+            });
+        });
+    </script>
 </body>
 </html>

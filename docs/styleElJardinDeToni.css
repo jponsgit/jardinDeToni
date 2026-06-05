@@ -309,6 +309,12 @@ footer h4 {
 
 }
 
+#imgWhats img {
+    background-color: #fff;
+    border-radius: 50px;
+}
+
+
 span {
     font-weight:bold;
 }

@@ -8,6 +8,16 @@
     <title>El Jardín de Toni</title>
 </head>
 <body>
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-contenido">
+            <p>Utilizamos cookies propias y de terceros para mejorar tu experiencia. Puedes aceptar todas las cookies, configurar solo las necesarias o rechazarlas por completo.</p>
+            <div class="cookie-botones">
+                <button onclick="gestionarCookies('todas')" class="btn-cookie btn-aceptar">Aceptar todas</button>
+                <button onclick="gestionarCookies('necesarias')" class="btn-cookie btn-necesarias">Solo necesarias</button>
+                <button onclick="gestionarCookies('rechazar')" class="btn-cookie btn-rechazar">Rechazar cookies</button>
+            </div>
+        </div>
+    </div>
     <a id="imgWhats" href=""><img src="./img/whatsapp-logo.webp"></a>
     <header>
         <nav>
@@ -78,6 +88,48 @@
                 </ul>
             </div>
         </section>
+        <section id="resultados">
+            <div id="resultadosInfo">
+                <h1> Resultados</h1>
+                <p> En <span>El Jardín de Toni</span> creemos que un jardín no es solo un trozo de tierra, sino una extensión de tu hogar y de la belleza de nuestra isla. 
+                    Las condiciones en Menorca son únicas: el sol del verano, la fuerza de la Tramontana y la necesidad de optimizar cada gota de agua exigen un 
+                    planteamiento inteligente. Aquí puedes ver la transformación de algunos de nuestros proyectos más recientes. Pasamos de parcelas descuidadas, 
+                    terrenos áridos o jardines mal planificados a auténticos oasis mediterráneos, sostenibles y llenos de vida.  </p>
+            </div>
+            <div id="resultadosImg">
+                <div class="carrusel-contenedor">
+                    <div class="carrusel-track" id="track">
+
+                        <div class="slide">
+                            <img src="../JardinesYMantenimineto/img/Gemini_Generated_Image_2pgi4a2pgi4a2pgi.png" alt="Chalet en Cala Blanca">
+                            <div class="slide-texto">
+                                <h3>Chalet en Cala Blanca</h3>
+                                <p>Recuperación de jardín totalmente abandonado.</p>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <img src="./img/podar-arboles.jpg" alt="Poda en Ciudadela">
+                            <div class="slide-texto">
+                                <h3>Poda en Ciudadela</h3>
+                                <p>Saneamiento de árboles estructurales para resistir la Tramontana.</p>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <img src="../../../Downloads/antes-despues-sistema-riego.png" alt="Sistema de riwgo">
+                            <div class="slide-texto">
+                                <h3>Antes / Despues Sistema de Riego</h3>
+                                <p> Reforma completa del sistema de riego</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button type="button" class="btn-carrusel btn-prev" onclick="moverIzquierda()">&#10094;</button>
+                    <button type="button" class="btn-carrusel btn-next" onclick="moverDerecha()">&#10095;</button>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
         <h4> Toni Pons</h4>
@@ -95,12 +147,68 @@
                     <a href="#inicio"><img id="logo" src="./img/logo.png"></a>
                     <div id="redes">
                         <a href="https://www.instagram.com/eljardindetoni/"><img src="./img/instagram-removebg-preview.png"></a>
-                        <img src="./img/facebook-removebg-preview.png">
+                        <a href="https://www.facebook.com"><img src="./img/facebook-removebg-preview.png"></a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
     <button id="whatsapp"></button>
+    <script>
+        const track = document.getElementById('track');
+        const slides = document.querySelectorAll('.slide');
+        let indiceActual = 0;
+
+        function actualizarCarrusel() {
+            track.style.transform = `translateX(-${indiceActual * 100}%)`;
+        }
+
+        function moverDerecha() {
+            if (indiceActual < slides.length - 1) {
+                indiceActual++;
+            } else {
+                indiceActual = 0;
+            }
+            actualizarCarrusel();
+        }
+
+        function moverIzquierda() {
+            if (indiceActual > 0) {
+                indiceActual--;
+            } else {
+                indiceActual = slides.length - 1;
+            }
+            actualizarCarrusel();
+        }
+        setInterval(moverDerecha, 9000);
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const banner = document.getElementById("cookie-banner");
+            const cookiesAceptadas = localStorage.getItem("cookies_preferencia");
+            if (!cookiesAceptadas) {
+                setTimeout(() => {
+                    banner.classList.add("mostrar");
+                }, 1000); 
+            }
+        });
+
+        function gestionarCookies(opcion) {
+            const banner = document.getElementById("cookie-banner");
+            
+            localStorage.setItem("cookies_preferencia", opcion);
+            
+            if (opcion === 'todas') {
+                console.log("Cookies de marketing y análisis activadas.");
+            } else if (opcion === 'necesarias') {
+                console.log("Solo se permiten las cookies técnicas.");
+            } else {
+                console.log("Cookies rechazadas.");
+            }
+            
+            banner.classList.remove("mostrar");
+        }
+
+    </script>
 </body>
 </html>

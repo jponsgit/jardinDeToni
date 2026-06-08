@@ -293,7 +293,10 @@ header ul li a:hover{
 #infoZona iframe {
     width: 100%;
     height: 480px;
+    border-radius: 10px;
+    
 }
+
 
 #resultados {
     margin-top: 50px;
@@ -571,5 +574,3 @@ span {
         text-align: left;
     }
 }
-
-

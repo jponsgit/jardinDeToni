@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./blogStyle.css" rel="stylesheet">
+    <link rel="icon" href="../img/logo.png" type="image/png">
+</head>
+<body>
+<a id="imgWhats" href=""><img src="../img/whatsapp-logo.webp"></a>
+<header>
+    <nav>
+        <a href="../index.html#inicio"><img src="../img/logo.png"></a>
+            <ul>
+                <li><a href="../index.html#quienesSomos"> Nosotros </a></li>
+                <li><a href="../index.html#servicios"> Servicios </a></li>
+                <li><a href="../index.html#zonaTrabajo"> Zonas </a></li>
+                <li><a href="./blog.html"> Blog </a></li>
+
+            </ul>
+        </nav>
+</header>
+<div id="formularioDiv">
+    <h1>Deja tú reseña</h1>
+    <form id="miFormulario">
+        <input id="nombre" type="text" placeholder="Nombre" required>
+        <textarea id="servicios" placeholder="Servicio/s" required></textarea>
+        <div class="estrellas-input">
+            <label>Puntuación:</label>
+            <div class="estrellas">
+                <input type="radio" id="estrella5" name="puntuacion" value="5">
+                <label for="estrella5" title="5 estrellas">★</label>
+                <input type="radio" id="estrella4" name="puntuacion" value="4">
+                <label for="estrella4" title="4 estrellas">★</label>
+                <input type="radio" id="estrella3" name="puntuacion" value="3">
+                <label for="estrella3" title="3 estrellas">★</label>
+                <input type="radio" id="estrella2" name="puntuacion" value="2">
+                <label for="estrella2" title="2 estrellas">★</label>
+                <input type="radio" id="estrella1" name="puntuacion" value="1">
+                <label for="estrella1" title="1 estrella">★</label>
+            </div>
+        </div>
+        <button id="btnEnviar" type="submit">Enviar</button>
+    </form>
+</div>
+
+<div id="mediaSeccion">
+    <h2>Puntuación media</h2>
+    <div class="media-estrellas" id="mediaEstrellas">
+        <span class="estrella">★</span>
+        <span class="estrella">★</span>
+        <span class="estrella">★</span>
+        <span class="estrella">★</span>
+        <span class="estrella">★</span>
+    </div>
+    <p id="mediaNumero">— / 5</p>
+    <p id="totalResenas">Aún no hay reseñas</p>
+</div>
+
+<div id="reseñasSeccion">
+    <h2>Reseñas</h2>
+    <div id="listaReseñas">
+        <p class="sin-reseñas" id="sinReseñas">Todavía no hay reseñas. ¡Sé el primero!</p>
+    </div>
+</div>
+<footer>
+        <h4> Toni Pons</h4>
+        <div id="contFoo">
+            <div id="contacto">
+                <p id="Pcontacto">Contacto: </p>
+                <p id="Pcorreo"> &#128231 jardines.mantenimiento@hotmail.es</p>
+                <p> &#128222 971 12 32 12</p>
+                <p> &#128205 Menorca</p><br>
+                <p><a href="#formularioDiv"> Formulario de contacto</a></p>
+                <p><a href="../docs/privacidad.html#contPolitica"> Politica de privacidad</a></p>
+            </div>
+            <div id="add">
+                <div id="imganes">
+                    <a href="../index.html#inicio"><img id="logo" src="../img/logo.png"></a>
+                    <div id="redes">
+                        <a href="https://www.instagram.com/eljardindetoni/"><img src="../img/instagram-removebg-preview.png"></a>
+                        <a href="https://www.facebook.com"><img src="../img/facebook-removebg-preview.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        let reseñas = JSON.parse(localStorage.getItem('reseñasBlog')) || [];
+        reseñas = reseñas.map(function(r) {
+            r.fecha = new Date(r.fecha);
+            return r;
+        });
+
+        const formulario = document.getElementById('miFormulario');
+        const listaReseñas = document.getElementById('listaReseñas');
+        const mediaEstrellas = document.getElementById('mediaEstrellas');
+        const mediaNumero = document.getElementById('mediaNumero');
+        const totalResenasEl = document.getElementById('totalResenas');
+
+        function guardarEnLocalStorage() {
+            localStorage.setItem('reseñasBlog', JSON.stringify(reseñas));
+        }
+
+        formulario.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const nombre = document.getElementById('nombre').value.trim();
+            const texto = document.getElementById('servicios').value.trim();
+            const puntuacionInput = document.querySelector('input[name="puntuacion"]:checked');
+
+            if (!puntuacionInput) {
+                alert('Por favor, selecciona una puntuación con las estrellas.');
+                return;
+            }
+
+            const puntuacion = parseInt(puntuacionInput.value);
+
+            const reseña = {
+                id: Date.now(), 
+                nombre: nombre,
+                texto: texto,
+                puntuacion: puntuacion,
+                fecha: new Date()
+            };
+
+            reseñas.push(reseña);
+            guardarEnLocalStorage();
+            renderReseñas();
+            renderMedia();
+            formulario.reset();
+        });
+
+        function eliminarReseña(id) {
+            if (confirm('¿Seguro que quieres eliminar esta reseña?')) {
+                reseñas = reseñas.filter(function(r) {
+                    return r.id !== id;
+                });
+                
+                guardarEnLocalStorage();
+                renderReseñas();
+                renderMedia();
+            }
+        }
+
+        function renderReseñas() {
+            listaReseñas.innerHTML = '';
+
+            if (reseñas.length === 0) {
+                listaReseñas.innerHTML = '<p class="sin-reseñas">Todavía no hay reseñas. ¡Sé el primero!</p>';
+                return;
+            }
+
+            const ordenadas = [...reseñas].reverse();
+
+            ordenadas.forEach(function (r) {
+                const card = document.createElement('div');
+                card.className = 'reseña-card';
+
+                const estrellasHTML = '★'.repeat(r.puntuacion) + '☆'.repeat(5 - r.puntuacion);
+
+                const fechaStr = r.fecha.toLocaleDateString('es-ES', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+
+                card.innerHTML =
+                    '<div class="reseña-header">' +
+                        '<span class="reseña-nombre">' + escapeHTML(r.nombre) + '</span>' +
+                        '<span class="reseña-estrellas">' + estrellasHTML + '</span>' +
+                        '<button class="btn-eliminar" title="Eliminar reseña">✕</button>' +
+                    '</div>' +
+                    '<p class="reseña-texto">' + escapeHTML(r.texto) + '</p>' +
+                    '<p class="reseña-fecha">' + fechaStr + '</p>';
+
+                // Añadir evento click al botón de eliminar de esta tarjeta
+                const btnEliminar = card.querySelector('.btn-eliminar');
+                btnEliminar.addEventListener('click', function() {
+                    eliminarReseña(r.id);
+                });
+
+                listaReseñas.appendChild(card);
+            });
+        }
+
+        function renderMedia() {
+            const estrellasSpans = mediaEstrellas.querySelectorAll('.estrella');
+
+            if (reseñas.length === 0) {
+                estrellasSpans.forEach(function (s) {
+                    s.className = 'estrella';
+                });
+                mediaNumero.textContent = '— / 5';
+                totalResenasEl.textContent = 'Aún no hay reseñas';
+                return;
+            }
+
+            const suma = reseñas.reduce(function (acc, r) { return acc + r.puntuacion; }, 0);
+            const media = suma / reseñas.length;
+
+            estrellasSpans.forEach(function (s, i) {
+                const valor = i + 1;
+                if (media >= valor) {
+                    s.className = 'estrella llena';
+                } else if (media >= valor - 0.5) {
+                    s.className = 'estrella media';
+                } else {
+                    s.className = 'estrella';
+                }
+            });
+
+            mediaNumero.textContent = media.toFixed(1) + ' / 5';
+            totalResenasEl.textContent = reseñas.length + ' reseña' + (reseñas.length !== 1 ? 's' : '');
+        }
+
+        function escapeHTML(str) {
+            const div = document.createElement('div');
+            div.appendChild(document.createTextNode(str));
+            return div.innerHTML;
+        }
+
+        renderReseñas();
+        renderMedia();
+    </script>
+</body>
+</html>

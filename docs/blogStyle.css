@@ -1,0 +1,399 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #ddffcd;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+
+nav{
+    background-color: #036e15;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;  
+    padding: 20px;
+}
+
+nav ul{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+nav ul li{
+    display: flex;
+    flex-direction: row;
+}
+
+header ul li a {
+    color: rgb(255, 255, 255);
+    border: none;
+    text-decoration: none;
+}
+
+header ul li a:hover{
+    border-bottom: 1px solid rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+nav img{
+    width: 50px;
+    height: 50px;
+}
+
+#volver {
+    text-decoration: none;
+    color: #000;
+    background-color: #d8d8d8;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    width: 8%;
+    justify-content: center;
+    border-bottom-right-radius: 10px;
+
+}
+
+#formularioDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #000;
+    align-items: center;
+    padding: 5%;
+    margin: 10%;
+    border-radius: 10px;
+}
+
+form {
+    margin-top: 30px ;
+}
+
+form input, form textarea, form button{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    height: 50px;
+    padding: 5px;
+    width: 100%;
+    border: 1px solid #949494;
+    border-radius: 10px;
+    background-color: #ffffff;
+
+}
+
+form input:hover, form textarea:hover, form button:hover{
+
+    height: 53px;
+    width: 105%;
+
+}
+
+
+form button{
+    padding-top: 15px;
+    font-weight: bold;
+    background-color: #4d7e37;
+    color: #fff;
+}
+
+footer {
+    margin-top: 80px;
+    background-color: #036e15;
+    padding: 30px 10px;
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    color: white;
+}
+
+footer h4 {
+    font-size: 30px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#contFoo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 50px;
+    padding-top: 30px;
+}
+
+#imganes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo {
+    width: 100px;
+    height: 100px;
+}
+
+#redes {
+    padding-top: 40px;
+}
+
+#redes img{
+    width: 40px;
+    height: 35px;
+}
+
+#contacto p a{
+    color: white;
+    text-decoration: none;
+    
+}
+
+#Pcontacto {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 25px;
+    padding-bottom: 10px;
+}
+
+#imgWhats img {
+    background-color: #fff;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+}
+
+#imgWhats img:hover{
+    width: 52px;
+    height: 52px;
+}
+
+.estrellas-input {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+.estrellas-input label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #222;
+}
+.estrellas-input .estrellas {
+    display: flex;
+    gap: 6px;
+    direction: rtl;
+    justify-content: flex-end;
+}
+.estrellas-input .estrellas input[type="radio"] {
+    display: none;
+}
+.estrellas-input .estrellas label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.15s;
+}
+.estrellas-input .estrellas label:hover,
+.estrellas-input .estrellas label:hover ~ label,
+.estrellas-input .estrellas input[type="radio"]:checked ~ label {
+    color: #f5a623;
+    transform: scale(1.15);
+}
+
+#mediaSeccion {
+    max-width: 560px;
+    margin: 30px auto 10px;
+    padding: 22px 30px;
+    background: #fff;
+    border: 2px solid #222;
+    border-radius: 12px;
+    text-align: center;
+}
+#mediaSeccion h2 {
+    margin: 0 0 8px;
+    font-size: 1.3rem;
+    color: #222;
+}
+.media-estrellas {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 4px;
+}
+.media-estrellas .estrella {
+    font-size: 2.2rem;
+    color: #ccc;
+    transition: color 0.3s;
+}
+.media-estrellas .estrella.llena {
+    color: #f5a623;
+}
+.media-estrellas .estrella.media {
+    position: relative;
+    color: #ccc;
+}
+
+.media-estrellas .estrella.media::before {
+    content: '★';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    overflow: hidden;
+    color: #f5a623;
+}
+#mediaNumero {
+    font-size: 1.1rem;
+    color: #555;
+    font-weight: 600;
+}
+#totalResenas {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 2px;
+}
+
+#reseñasSeccion {
+    max-width: 90%;      
+    margin: 20px auto 40px;
+    padding: 0 10px;
+}
+#reseñasSeccion h2 {
+    text-align: center;
+    font-size: 1.3rem;
+    color: #222;
+    margin-bottom: 18px;
+}
+
+#listaReseñas {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.reseña-card {
+    background: #fff;
+    border: 2px solid #222;
+    border-radius: 12px;
+    padding: 18px 22px;
+    width: calc(50% - 8px);  
+    box-sizing: border-box;
+    animation: aparicion 0.4s ease-out;
+}
+
+.sin-reseñas {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 20px;
+    width: 100%;
+}
+
+@keyframes aparicion {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.reseña-card .reseña-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.reseña-card .reseña-nombre {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #222;
+}
+.reseña-card .reseña-estrellas {
+    color: #f5a623;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+.reseña-card .reseña-texto {
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+.reseña-card .reseña-fecha {
+    font-size: 0.78rem;
+    color: #aaa;
+    margin-top: 8px;
+    text-align: right;
+}
+
+/* ===== BOTÓN ELIMINAR ===== */
+.reseña-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 10px;
+}
+
+.reseña-header .reseña-nombre {
+    flex: 1;
+}
+
+.reseña-header .reseña-estrellas {
+    flex-shrink: 0;
+}
+
+.btn-eliminar {
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0 5px;
+    transition: color 0.2s, transform 0.2s;
+    line-height: 1;
+    margin: 0;
+    height: auto; 
+    width: auto; 
+}
+
+.btn-eliminar:hover {
+    color: #e74c3c;
+    transform: scale(1.2);
+}
+
+
+
+@media (max-width: 587px){
+
+    #Pcorreo {
+        display: none;
+    }
+    
+    #contFoo{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+}
+
+@media (max-width: 600px) {
+    #reseñasSeccion {
+        max-width: 95%;
+    }
+    .reseña-card {
+        width: 100%;  
+    }
+}
